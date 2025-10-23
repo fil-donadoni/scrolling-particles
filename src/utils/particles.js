@@ -19,6 +19,7 @@ export const createParticles = (scene, samplers) => {
 
     const positionArray = new Float32Array(particlesCount * 3);
     const position2Array = new Float32Array(particlesCount * 3);
+    const position3Array = new Float32Array(particlesCount * 3);
     const colorArray = new Float32Array(particlesCount * 3);
     const offsetArray = new Float32Array(particlesCount * 3);
 
@@ -32,17 +33,26 @@ export const createParticles = (scene, samplers) => {
         const offset = Math.random();
         offsetArray[i] = offset
 
-        samplers.frog.sample(pos);
+        // samplers.frog.sample(pos);
+        // const [x, y, z] = pos;
+        // positionArray.set([x, y, z], i * 3);
+
+        samplers.pawn.sample(pos);
         const [x, y, z] = pos;
         positionArray.set([x, y, z], i * 3);
 
         samplers.knight.sample(pos);
         const [x2, y2, z2] = pos;
         position2Array.set([x2, y2, z2], i * 3);
+
+        samplers.king.sample(pos);
+        const [x3, y3, z3] = pos;
+        position3Array.set([x3, y3, z3], i * 3);
     }
 
     geometry.setAttribute('position', new BufferAttribute(positionArray, 3));
     geometry.setAttribute('position2', new BufferAttribute(position2Array, 3));
+    geometry.setAttribute('position3', new BufferAttribute(position3Array, 3));
     geometry.setAttribute('color', new BufferAttribute(colorArray, 3));
     geometry.setAttribute('offset', new BufferAttribute(offsetArray, 1));
 

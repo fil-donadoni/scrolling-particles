@@ -3,7 +3,9 @@ import * as dat from 'lil-gui'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { addFrog } from './meshes/frog'
+import { addPawn } from './meshes/pawn'
 import { addKnight } from './meshes/knight'
+import { addKing } from './meshes/king'
 import { createParticles, uniforms } from './utils/particles'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -18,7 +20,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(uniforms.uProgress, {
-    value: 1,
+    value: 2, // Cambiato da 1 a 2 per gestire 3 mesh
     duration: 2,
     ease: 'linear',
     scrollTrigger: {
@@ -49,8 +51,10 @@ const loader = new GLTFLoader(loadingManager)
 
 const samplers = {};
 
-addFrog(loader, samplers);
+// addFrog(loader, samplers);
+addPawn(loader, samplers);
 addKnight(loader, samplers);
+addKing(loader, samplers);
 
 loadingManager.onLoad = () => {
     console.log('all loaded!');
