@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+canvas.webgl {
+    @apply fixed inset-0 w-screen h-screen -z-10;
+}
